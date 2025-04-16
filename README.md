@@ -1,70 +1,160 @@
-# Getting Started with Create React App
+# 🐛 React Issue Tracker (using Create React App)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple React application that displays a list of issues using **static data** and a **functional component**. Ideal for beginners learning React basics like JSX, components, and list rendering.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Getting Started
 
-### `npm start`
+### 1. Create the React App
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Using [Create React App](https://create-react-app.dev/):
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npx create-react-app issue-tracker
+cd issue-tracker
+npm start
+```
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. Folder Structure
 
-### `npm run build`
+Inside the `src/` folder, create a `components/` folder:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+├── components/
+│   └── IssueList.jsx
+├── App.jsx
+└── index.js
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Create the Functional Component
 
-### `npm run eject`
+Create `src/components/IssueList.jsx`:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```jsx
+import React from 'react';
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+// Static list of issues
+const issues = [
+  {
+    id: 1,
+    title: 'Login button not working',
+    description: 'The login button does not respond to clicks.',
+    status: 'Open',
+  },
+  {
+    id: 2,
+    title: 'UI not responsive on mobile',
+    description: 'Layout breaks on smaller screens.',
+    status: 'Open',
+  },
+  {
+    id: 3,
+    title: 'Typo in About page',
+    description: 'There is a typo in the second paragraph of the About page.',
+    status: 'Closed',
+  },
+];
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+// Functional component to display the list
+const IssueList = () => {
+  return (
+    <div>
+      <h2>Issue Tracker</h2>
+      <ul>
+        {issues.map((issue) => (
+          <li key={issue.id} style={{ marginBottom: '1rem' }}>
+            <h3>{issue.title}</h3>
+            <p>{issue.description}</p>
+            <p><strong>Status:</strong> {issue.status}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+export default IssueList;
+```
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 4. Use the Component in App
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Update `src/App.jsx`:
 
-### Code Splitting
+```jsx
+import React from 'react';
+import IssueList from './components/IssueList';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+function App() {
+  return (
+    <div className="App">
+      <IssueList />
+    </div>
+  );
+}
 
-### Analyzing the Bundle Size
+export default App;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+### 5. Main Entry Point
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Ensure `src/index.js` looks like this:
 
-### Advanced Configuration
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 6. Run the App
 
-### `npm run build` fails to minify
+Start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm start
+```
+
+---
+
+## ✅ Output
+
+The app should display a list of issues:
+
+- Title
+- Description
+- Status (Open/Closed)
+
+---
+
+## 🧠 What You'll Learn
+
+| Concept              | Description                             |
+| -------------------- | --------------------------------------- |
+| JSX                  | HTML-like syntax in JavaScript          |
+| Functional Component | Simple component that returns JSX       |
+| Static Data          | Hard-coded array used for demo purposes |
+| List Rendering       | Using `.map()` to loop through items    |
+| `key` Prop           | Uniquely identifying list elements      |
+
+---
+
+##
+
